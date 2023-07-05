@@ -6,4 +6,4 @@
 import setuptools
 
 if __name__ == "__main__":
-    setuptools.setup(name="so-vits-svc-fork")
+    setuptools.setup(name="so-vits-svc-fork-mandarin", long_description = 'so-vits-svc-fork的繁中版')

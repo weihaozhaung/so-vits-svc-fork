@@ -38,7 +38,7 @@ venv\Scripts\pip.exe install torch torchaudio --index-url https://download.pytor
 )
 
 echo Installing so-vits-svc-fork...
-venv\Scripts\pip.exe install so-vits-svc-fork
+venv\Scripts\pip.exe install so-vits-svc-fork-mandarin
 
 rem echo Creating shortcut...
 rem powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%USDRPROFILE%\Desktop\so-vits-svc-fork.lnk');$s.TargetPath='%APPDATA%\so-vits-svc-fork\venv\Scripts\svcg.exe';$s.Save()"

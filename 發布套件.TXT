@@ -1,0 +1,13 @@
+1.change the package name in setup.py
+
+2.pip install twine
+
+3.go to target folder
+
+4.python setup.py sdist bdist_wheel
+
+5.twine check dist/*
+
+(twine upload --repository-url https://test.pypi.org/legacy/ dist/*)
+
+6.twine upload dist/*
