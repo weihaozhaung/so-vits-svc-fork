@@ -183,7 +183,7 @@ def main():
     frame_contents = {
         "Paths": [
             [
-                sg.Text("Model path"),
+                sg.Text("聲音模型"),
                 sg.Push(),
                 sg.InputText(
                     key="model_path",
@@ -204,7 +204,7 @@ def main():
                 ),
             ],
             [
-                sg.Text("Config path"),
+                sg.Text("設定檔路徑"),
                 sg.Push(),
                 sg.InputText(
                     key="config_path",
@@ -222,7 +222,7 @@ def main():
                 ),
             ],
             [
-                sg.Text("Cluster model path (Optional)"),
+                sg.Text("叢集模型路徑 (開發者可勾選)"),
                 sg.Push(),
                 sg.InputText(
                     key="cluster_model_path",
@@ -240,14 +240,14 @@ def main():
                 ),
             ],
         ],
-        "Common": [
+        "一般設定": [
             [
-                sg.Text("Speaker"),
+                sg.Text("聲音"),
                 sg.Push(),
                 sg.Combo(values=[], key="speaker", size=(20, 1)),
             ],
             [
-                sg.Text("Silence threshold"),
+                sg.Text("靜音閾值(音量低於一定閾值時進行一次分析)"),
                 sg.Push(),
                 sg.Slider(
                     range=(-60.0, 0),
@@ -258,9 +258,9 @@ def main():
             ],
             [
                 sg.Text(
-                    "Pitch (12 = 1 octave)\n"
-                    "ADJUST THIS based on your voice\n"
-                    "when Auto predict F0 is turned off.",
+                    "音高 (12 = 一個八度)\n"
+                    "根據個人音高自行調整\n"
+                    "此選項只能在關閉自動預測F0時使用",
                     size=(None, 4),
                 ),
                 sg.Push(),
@@ -274,11 +274,11 @@ def main():
             [
                 sg.Checkbox(
                     key="auto_predict_f0",
-                    text="Auto predict F0 (Pitch may become unstable when turned on in real-time inference.)",
+                    text="自動預測F0(當使用即時變聲時音高可能會不穩定)",
                 )
             ],
             [
-                sg.Text("F0 prediction method"),
+                sg.Text("F0預測方法"),
                 sg.Push(),
                 sg.Combo(
                     ["crepe", "crepe-tiny", "parselmouth", "dio", "harvest"],
@@ -286,7 +286,7 @@ def main():
                 ),
             ],
             [
-                sg.Text("Cluster infer ratio"),
+                sg.Text("叢集推論比率"),
                 sg.Push(),
                 sg.Slider(
                     range=(0, 1.0),
@@ -296,7 +296,7 @@ def main():
                 ),
             ],
             [
-                sg.Text("Noise scale"),
+                sg.Text("噪音尺度"),
                 sg.Push(),
                 sg.Slider(
                     range=(0.0, 1.0),
@@ -306,7 +306,7 @@ def main():
                 ),
             ],
             [
-                sg.Text("Pad seconds"),
+                sg.Text("填充時間長度(秒)"),
                 sg.Push(),
                 sg.Slider(
                     range=(0.0, 1.0),
@@ -316,7 +316,7 @@ def main():
                 ),
             ],
             [
-                sg.Text("Chunk seconds"),
+                sg.Text("數據塊時間時間長度(秒)"),
                 sg.Push(),
                 sg.Slider(
                     range=(0.0, 3.0),
@@ -326,7 +326,7 @@ def main():
                 ),
             ],
             [
-                sg.Text("Max chunk seconds (set lower if Out Of Memory, 0 to disable)"),
+                sg.Text("最大數據塊時間長度(記憶體不足就設低一點, 要關閉就設0)"),
                 sg.Push(),
                 sg.Slider(
                     range=(0.0, 240.0),
@@ -342,26 +342,27 @@ def main():
                 )
             ],
         ],
-        "File": [
+        "檔案": [
             [
-                sg.Text("Input audio path"),
+                sg.Text("要換聲音的檔案路徑"),
                 sg.Push(),
                 sg.InputText(key="input_path", enable_events=True),
                 sg.FileBrowse(
+                    button_text="瀏覽",
                     initial_folder=".",
                     key="input_path_browse",
                     file_types=get_supported_file_types_concat(),
                 ),
                 sg.FolderBrowse(
-                    button_text="Browse(Folder)",
+                    button_text="瀏覽(資料夾)",
                     initial_folder=".",
                     key="input_path_folder_browse",
                     target="input_path",
                 ),
-                sg.Button("Play", key="play_input"),
+                sg.Button("播放", key="play_input"),
             ],
             [
-                sg.Text("Output audio path"),
+                sg.Text("轉換完要放置的路徑"),
                 sg.Push(),
                 sg.InputText(key="output_path"),
                 sg.FileSaveAs(
@@ -370,11 +371,11 @@ def main():
                     file_types=get_supported_file_types(),
                 ),
             ],
-            [sg.Checkbox(key="auto_play", text="Auto play", default=True)],
+            [sg.Checkbox(key="auto_play", text="自動播放", default=True)],
         ],
-        "Realtime": [
+        "即時變聲": [
             [
-                sg.Text("Crossfade seconds"),
+                sg.Text("交叉淡化秒數"),
                 sg.Push(),
                 sg.Slider(
                     range=(0, 0.6),
@@ -385,7 +386,7 @@ def main():
             ],
             [
                 sg.Text(
-                    "Block seconds",  # \n(big -> more robust, slower, (the same) latency)"
+                    "區塊秒數(越大越正確但延遲會更高)",  # \n(big -> more robust, slower, (the same) latency)"
                     tooltip="Big -> more robust, slower, (the same) latency",
                 ),
                 sg.Push(),
@@ -398,7 +399,7 @@ def main():
             ],
             [
                 sg.Text(
-                    "Additional Infer seconds (before)",  # \n(big -> more robust, slower)"
+                    "額外推論秒數(轉換前，越大越正確但延遲會更高)",  # \n(big -> more robust, slower)"
                     tooltip="Big -> more robust, slower, additional latency",
                 ),
                 sg.Push(),
@@ -411,7 +412,7 @@ def main():
             ],
             [
                 sg.Text(
-                    "Additional Infer seconds (after)",  # \n(big -> more robust, slower, additional latency)"
+                    "額外推論秒數(轉換後，越大越正確但延遲會更高)",  # \n(big -> more robust, slower, additional latency)"
                     tooltip="Big -> more robust, slower, additional latency",
                 ),
                 sg.Push(),
@@ -423,7 +424,7 @@ def main():
                 ),
             ],
             [
-                sg.Text("Realtime algorithm"),
+                sg.Text("即時變聲演算法"),
                 sg.Push(),
                 sg.Combo(
                     ["2 (Divide by speech)", "1 (Divide constantly)"],
@@ -432,7 +433,7 @@ def main():
                 ),
             ],
             [
-                sg.Text("Input device"),
+                sg.Text("輸入設備"),
                 sg.Push(),
                 sg.Combo(
                     key="input_device",
@@ -441,7 +442,7 @@ def main():
                 ),
             ],
             [
-                sg.Text("Output device"),
+                sg.Text("輸出設備"),
                 sg.Push(),
                 sg.Combo(
                     key="output_device",
@@ -451,12 +452,12 @@ def main():
             ],
             [
                 sg.Checkbox(
-                    "Passthrough original audio (for latency check)",
+                    "原始音頻直通 (用於檢查延遲)",
                     key="passthrough_original",
                     default=False,
                 ),
                 sg.Push(),
-                sg.Button("Refresh devices", key="refresh_devices"),
+                sg.Button("刷新設備", key="refresh_devices"),
             ],
             [
                 sg.Frame(
@@ -464,12 +465,12 @@ def main():
                     [
                         [
                             sg.Text(
-                                "In Realtime Inference:\n"
-                                "    - Setting F0 prediction method to 'crepe` may cause performance degradation.\n"
-                                "    - Auto Predict F0 must be turned off.\n"
-                                "If the audio sounds mumbly and choppy:\n"
-                                "    Case: The inference has not been made in time (Increase Block seconds)\n"
-                                "    Case: Mic input is low (Decrease Silence threshold)\n"
+                                "在即時推論中：\n"
+                                "    - 將F0預測方法設定為'crepe` 可能會導致效能下降\n"
+                                "    - 必須關閉自動預測F0\n"
+                                "如果音頻聽起來含糊不清且有卡頓：\n"
+                                "    情況一：推論沒有及時完成（增加區塊秒數）\n"
+                                "    情況二：麥克風輸入音量過低（降低靜音閾值）\n"
                             )
                         ]
                     ],
@@ -478,7 +479,7 @@ def main():
         ],
         "Presets": [
             [
-                sg.Text("Presets"),
+                sg.Text("預設參數"),
                 sg.Push(),
                 sg.Combo(
                     key="presets",
@@ -486,13 +487,13 @@ def main():
                     size=(40, 1),
                     enable_events=True,
                 ),
-                sg.Button("Delete preset", key="delete_preset"),
+                sg.Button("刪除此預設", key="delete_preset"),
             ],
             [
-                sg.Text("Preset name"),
+                sg.Text("預設參數名稱"),
                 sg.Stretch(),
                 sg.InputText(key="preset_name", size=(26, 1)),
-                sg.Button("Add current settings as a preset", key="add_preset"),
+                sg.Button("將目前參數加入預設", key="add_preset"),
             ],
         ],
     }
@@ -509,7 +510,7 @@ def main():
             sg.Checkbox(
                 key="use_gpu",
                 default=get_optimal_device() != torch.device("cpu"),
-                text="Use GPU"
+                text="使用顯卡GPU"
                 + (
                     " (not available; if your device has GPU, make sure you installed PyTorch with CUDA support)"
                     if get_optimal_device() == torch.device("cpu")
@@ -519,9 +520,9 @@ def main():
             )
         ],
         [
-            sg.Button("Infer", key="infer"),
-            sg.Button("(Re)Start Voice Changer", key="start_vc"),
-            sg.Button("Stop Voice Changer", key="stop_vc"),
+            sg.Button("開始變聲", key="infer"),
+            sg.Button("(重新)開啟變聲器", key="start_vc"),
+            sg.Button("暫停變聲器", key="stop_vc"),
             sg.Push(),
             # sg.Button("ONNX Export", key="onnx_export"),
         ],
