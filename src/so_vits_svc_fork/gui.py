@@ -250,7 +250,7 @@ def main():
                 sg.Combo(values=[], key="speaker", size=(20, 1)),
             ],
             [
-                sg.Text("靜音閾值(音量低於一定閾值時進行一次分析)"),
+                sg.Text("靜音閾值"),
                 sg.Push(),
                 sg.Slider(
                     range=(-60.0, 0),
@@ -524,8 +524,8 @@ def main():
             )
         ],
         [
-            sg.Button("開始變聲", key="infer"),
-            sg.Button("(重新)開啟變聲器", key="start_vc"),
+            sg.Button("錄音轉檔", key="infer"),
+            sg.Button("開啟變聲器(請等待5秒)", key="start_vc"),
             sg.Button("暫停變聲器", key="stop_vc"),
             sg.Push(),
             # sg.Button("ONNX Export", key="onnx_export"),
