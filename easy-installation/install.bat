@@ -3,8 +3,8 @@
 echo You can rerun this script to update the installation.
 
 echo Moving to AppData\Roaming\so-vits-svc-fork...
-mkdir "%APPDATA%\so-vits-svc-fork" >nul 2>&1
-cd "%APPDATA%\so-vits-svc-fork"
+mkdir "%APPDATA%\so-vits-svc-fork-mandarin" >nul 2>&1
+cd "%APPDATA%\so-vits-svc-fork-mandarin"
 
 echo Checking for Python 3.10...
 
@@ -42,10 +42,10 @@ venv\Scripts\pip.exe install so-vits-svc-fork-mandarin
 
 
 rem echo Creating shortcut...
-rem powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%USDRPROFILE%\Desktop\so-vits-svc-fork-mandarin.lnk');$s.TargetPath='%APPDATA%\so-vits-svc-fork\venv\Scripts\svcg.exe';$s.Save()"
+rem powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%USDRPROFILE%\Desktop\so-vits-svc-fork-mandarin.lnk');$s.TargetPath='%APPDATA%\so-vits-svc-fork-mandarin\venv\Scripts\svcg.exe';$s.Save()"
 
 echo Creating shortcut to the start menu...
-powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%APPDATA%\Microsoft\Windows\Start Menu\Programs\so-vits-svc-fork-mandarin.lnk');$s.TargetPath='%APPDATA%\so-vits-svc-fork\venv\Scripts\svcg.exe';$s.Save()"
+powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%APPDATA%\Microsoft\Windows\Start Menu\Programs\so-vits-svc-fork-mandarin.lnk');$s.TargetPath='%APPDATA%\so-vits-svc-fork-mandarin\venv\Scripts\svcg.exe';$s.Save()"
 
 echo Launching so-vits-svc-fork-mandarin GUI...
 venv\Scripts\svcg.exe
