@@ -193,6 +193,7 @@ def main():
                     enable_events=True,
                 ),
                 sg.FileBrowse(
+                    button_text="瀏覽",
                     initial_folder=Path("./logs/44k/").absolute
                     if Path("./logs/44k/").exists()
                     else Path(".").absolute().as_posix(),
@@ -214,6 +215,7 @@ def main():
                     enable_events=True,
                 ),
                 sg.FileBrowse(
+                    button_text="瀏覽",
                     initial_folder=Path("./configs/44k/").as_posix()
                     if Path("./configs/44k/").exists()
                     else Path(".").absolute().as_posix(),
@@ -232,6 +234,7 @@ def main():
                     enable_events=True,
                 ),
                 sg.FileBrowse(
+                    button_text="瀏覽",
                     initial_folder="./logs/44k/"
                     if Path("./logs/44k/").exists()
                     else ".",
@@ -338,7 +341,7 @@ def main():
             [
                 sg.Checkbox(
                     key="absolute_thresh",
-                    text="Absolute threshold (ignored (True) in realtime inference)",
+                    text="固定閾值（在即時變聲時此選項會被忽略並設為True）",
                 )
             ],
         ],
