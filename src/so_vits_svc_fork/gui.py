@@ -181,7 +181,7 @@ def main():
     model_candidates = list(sorted(Path("./logs/44k/").glob("G_*.pth")))
 
     frame_contents = {
-        "Paths": [
+        "模型設定": [
             [
                 sg.Text("聲音模型"),
                 sg.Push(),
@@ -477,7 +477,7 @@ def main():
                 ),
             ],
         ],
-        "Presets": [
+        "預設": [
             [
                 sg.Text("預設參數"),
                 sg.Push(),
@@ -529,16 +529,16 @@ def main():
     ]
     column1 = sg.Column(
         [
-            frames["Paths"],
-            frames["Common"],
+            frames["模型設定"],
+            frames["一般設定"],
         ],
         vertical_alignment="top",
     )
     column2 = sg.Column(
         [
-            frames["File"],
-            frames["Realtime"],
-            frames["Presets"],
+            frames["檔案"],
+            frames["即時變聲"],
+            frames["預設"],
         ]
         + bottoms
     )
