@@ -366,6 +366,7 @@ def main():
                 sg.Push(),
                 sg.InputText(key="output_path"),
                 sg.FileSaveAs(
+                    button_text="儲存在...",
                     initial_folder=".",
                     key="output_path_browse",
                     file_types=get_supported_file_types(),
@@ -561,7 +562,7 @@ def main():
             ]
         ]
     window = sg.Window(
-        f"{__name__.split('.')[0].replace('_', '-')} v{__version__}",
+        "so-vits-svc變聲軟體",
         layout,
         grab_anywhere=True,
         finalize=True,
