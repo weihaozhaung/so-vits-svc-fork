@@ -1,13 +1,13 @@
 1.change the package name in setup.py
 
-2.pip install twine
+2.pip install poetry
 
 3.go to target folder
 
 4.python setup.py sdist bdist_wheel
 
-5.twine check dist/*
+5.poetry build
 
-(twine upload --repository-url https://test.pypi.org/legacy/ dist/*)
+6.poetry config pypi-token.pypi pypi-AgEIcHlwaS5vcmcCJGY3Nzg3OWQ0LWI2YzgtNDFhOC04YTk0LTg5M2U0OTMxYmIwZAACKlszLCI0NzNlZDg2ZS1kZGZkLTQzZjgtYWFmYy0xZjVmZWM2ODk2MDgiXQAABiC8Hu4ONe6-MkvCUQrzbrdxOoy1PKAcvbwy3fY7tmLe1A
 
-6.twine upload dist/*
+7.poetry publish

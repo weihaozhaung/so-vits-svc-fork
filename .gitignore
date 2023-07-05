@@ -4,6 +4,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+發布套件.TXT
 
 # C extensions
 *.so
