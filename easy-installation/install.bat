@@ -38,7 +38,7 @@ venv\Scripts\pip.exe install torch torchaudio --index-url https://download.pytor
 )
 
 echo Installing so-vits-svc-fork-mandarin...
-venv\Scripts\pip.exe install so-vits-svc-fork-mandarin
+venv\Scripts\pip.exe install --upgrade so-vits-svc-fork-mandarin
 
 
 rem echo Creating shortcut...

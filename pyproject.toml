@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "so-vits-svc-fork-mandarin"
-version = "1.0.2"
+version = "1.0.3"
 description = "A mandarin translation version of a fork of so-vits-svc."
 authors = ["34j <34j.95a2p@simplelogin.com>"]
 license = "MIT"
